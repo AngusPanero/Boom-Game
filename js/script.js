@@ -76,6 +76,16 @@ function actualizarPuntos () {
     hermanoRes.innerHTML = `Tienes ${puntosUsuario} Puntos, La Pc Tiene ${puntosPc} Puntos`
 }
 
+reseteo.addEventListener("click", () => {
+    puntosUsuario = 0;
+    puntosPc = 0;
+    localStorage.setItem("puntosUs", puntosUsuario);
+    localStorage.setItem("puntosPc", puntosPc);
+    actualizarPuntos();
+    resultado.innerHTML = `<p>Contadores Reiniciados.</p>`;
+    console.log("Puntos reiniciados: Usuario = 0, PC = 0");
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     hermanoRes = document.createElement("div") // Creo Nuevo Div
     resultado.insertAdjacentElement("afterend", hermanoRes); // lo hago Hermano con la clave afterend
