@@ -1,6 +1,7 @@
 let input = document.getElementById("userInput");
 const resultado = document.getElementById("result")
 const mostrarContador = document.getElementById("countdown");
+const reseteo = document.getElementById("restart");
 
 let miJugada; // creo mis variables sin definir fuera para que funcione la globalidad
 let jugadaPc;
@@ -67,14 +68,22 @@ function cargarJugada (evento) {
             <p>💣 ¡La bomba ha estallado! 💣</p>
             <p>Perdiste! Elegiste ${miJugada} y la Pc eligió ${jugadaPc}</p>
             `
-        };  
+        }  
+        actualizarPuntos();
 } 
+
+function actualizarPuntos () {
+    hermanoRes.innerHTML = `Tienes ${puntosUsuario} Puntos, La Pc Tiene ${puntosPc} Puntos`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    hermanoRes = document.createElement("div") // Creo Nuevo Div
+    resultado.insertAdjacentElement("afterend", hermanoRes); // lo hago Hermano con la clave afterend
+    actualizarPuntos();
+})
 
 // le doy dos eventos para que funcione con la bajada del enter y cuando salgo de ahí
 input.addEventListener("keydown", cargarJugada);
 input.addEventListener("blur", cargarJugada); // Blur es cuando interactuo en algo diferente a lo seleccionado que en este caso es el input
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    resultado.innerHTML = `Tienes ${puntosUsuario} Puntos, La Pc Tiene ${puntosPc} Puntos`
-})
