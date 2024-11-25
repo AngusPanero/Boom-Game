@@ -1,8 +1,12 @@
 let input = document.getElementById("userInput");
 const resultado = document.getElementById("result")
+const mostrarContador = document.getElementById("countdown");
 
 let miJugada; // creo mis variables sin definir fuera para que funcione la globalidad
 let jugadaPc;
+
+let puntosUsuario = parseInt(localStorage.getItem("puntosUs"), 10) || 0;
+let puntosPc = parseInt(localStorage.getItem("puntosPc"), 10) || 0;
 
 // Primero tengo que marcar como reaccionaria el input con los valores
 function cargarJugada (evento) {
@@ -20,26 +24,57 @@ function cargarJugada (evento) {
     jugadaPc = Math.floor(Math.random() * 3 + 1) // aca el valor es el random de 1 a 3
     console.log(`La Jugada de la Pc es ${jugadaPc}`);
 
-    compararJugadas() // llamo la segunda funcion dentro de la primera para que esten vinculadas
 
+    temporizador(); // llamo la segunda funcion dentro de la primera para que esten vinculadas con delay de 5sec
     };
+
+    function temporizador () {
+        let contador = 5; // lo arranco en 5 (simulando segundos)
+        mostrarContador.innerHTML = `<p>💣 ¡Cuidado! La bomba puede estallar, Tiempo restante: ${contador} 💣</p>`;
+    
+        const intervalo = setInterval(() => {
+            contador--; // Reduzco el contador en 1
+            mostrarContador.innerHTML = `<p>💣 ¡Cuidado! La bomba puede estallar, Tiempo restante: ${contador} 💣</p>`;
+    
+            if (contador <= 0) {
+                clearInterval(intervalo); // Detén el intervalo cuando llegue a 0
+                mostrarContador.innerHTML = ""; // dejo vacio el string para la proxima vuelta
+                compararJugadas(); // Llamo la función de comparación que esta abajo
+            }
+        }, 1000); // aca la inicializo cada un segunto en el setInterval
+    }
+
     function compararJugadas() {
         if (jugadaPc === miJugada){
+            puntosUsuario++
+            localStorage.setItem("puntosUs", puntosUsuario)
+
+            console.log("Puntos Usuario:", puntosUsuario);
+
             resultado.innerHTML = `
-            <p>¡Has salvado el mundo!</p>
+            <p>🌎 ¡Has salvado el mundo! 🌎</p>
             <p> Ganaste! Elegiste ${miJugada} y la Pc eligió ${jugadaPc}</p>
             `
 
         }
         else {
+            puntosPc++
+            localStorage.setItem("puntosPc", puntosPc)
+
+            console.log("Puntos PC:", puntosPc);
+
             resultado.innerHTML = `
-            <p>La bomba ha estallado</p>
+            <p>💣 ¡La bomba ha estallado! 💣</p>
             <p>Perdiste! Elegiste ${miJugada} y la Pc eligió ${jugadaPc}</p>
             `
-        }
+        };  
 } 
 
 // le doy dos eventos para que funcione con la bajada del enter y cuando salgo de ahí
 input.addEventListener("keydown", cargarJugada);
-input.addEventListener("blur", cargarJugada); // Blur es cuando el usuario interactua en algo diferente a lo seleccionado que en este caso es el input
+input.addEventListener("blur", cargarJugada); // Blur es cuando interactuo en algo diferente a lo seleccionado que en este caso es el input
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    resultado.innerHTML = `Tienes ${puntosUsuario} Puntos, La Pc Tiene ${puntosPc} Puntos`
+})
