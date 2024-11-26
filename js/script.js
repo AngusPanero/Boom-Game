@@ -6,11 +6,14 @@ const reseteo = document.getElementById("restart");
 let miJugada; // creo mis variables sin definir fuera para que funcione la globalidad
 let jugadaPc;
 
-let puntosUsuario = parseInt(localStorage.getItem("puntosUs"), 10) || 0;
+let puntosUsuario = parseInt(localStorage.getItem("puntosUs"), 10) || 0; // El 10 especifica que va a guardar numeros decimales y el cero es mi valor
 let puntosPc = parseInt(localStorage.getItem("puntosPc"), 10) || 0;
 
 // Primero tengo que marcar como reaccionaria el input con los valores
 function cargarJugada (evento) {
+
+    resultado.innerHTML = ""; // dejo libre mi resultado inner porque abajo me dejaba siempre la jugada anterior, aca es como que la reseteo
+
     if (evento.type === "keydown" && evento.key !== "Enter"){ // !== dice que si no es estricatamente igual no funciona
             return;
     }
@@ -47,25 +50,29 @@ function cargarJugada (evento) {
 
     function compararJugadas() {
         if (jugadaPc === miJugada){
+            document.body.classList.remove("estallo", "suspenso"); // remuevo mis class de body para css
+            document.body.classList.add("aSalvo");
             puntosUsuario++
             localStorage.setItem("puntosUs", puntosUsuario)
 
             console.log("Puntos Usuario:", puntosUsuario);
 
             resultado.innerHTML = `
-            <p>🌎 ¡Has salvado el mundo! 🌎</p>
+            <p class="aSalvo">🌎 ¡Has salvado el mundo! 🌎</p>
             <p> Ganaste! Elegiste ${miJugada} y la Pc eligió ${jugadaPc}</p>
             `
 
         }
         else {
+            document.body.classList.remove("aSalvo", "suspenso");
+            document.body.classList.add("estallo");
             puntosPc++
             localStorage.setItem("puntosPc", puntosPc)
 
             console.log("Puntos PC:", puntosPc);
 
             resultado.innerHTML = `
-            <p>💣 ¡La bomba ha estallado! 💣</p>
+            <p class="estallo">💣 ¡La bomba ha estallado! 💣</p>
             <p>Perdiste! Elegiste ${miJugada} y la Pc eligió ${jugadaPc}</p>
             `
         }  
@@ -88,6 +95,7 @@ reseteo.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     hermanoRes = document.createElement("div") // Creo Nuevo Div
+    hermanoRes.classList.add("hermanoRes");
     resultado.insertAdjacentElement("afterend", hermanoRes); // lo hago Hermano con la clave afterend
     actualizarPuntos();
 })

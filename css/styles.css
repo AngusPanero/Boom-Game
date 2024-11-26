@@ -1,17 +1,122 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
+  font-family: Bahiana;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+body.estallo {
+  background: linear-gradient(90deg, #3d0c02, #ff4500, #ffcc00);
+  background-size: 400% 400%;
+  animation: explosionAnimation 6s ease infinite;
+}
+@keyframes explosionAnimation {
+  0% {
+  background-position: 0% 50%;
+  }
+  25% {
+  background-position: 50% 100%;
+  }
+  50% {
+  background-position: 100% 50%;
+  }
+  75% {
+  background-position: 50% 0%;
+  }
+  100% {
+  background-position: 0% 50%;
+  }
+}
+
+body.aSalvo {
+  background: linear-gradient(90deg, #007f5f, #00b4d8, #caf0f8);
+  background-size: 400% 400%;
+  animation: salvacionAnimation 6s ease infinite;
+}
+@keyframes salvacionAnimation {
+  0% {
+  background-position: 0% 50%;
+  }
+  25% {
+  background-position: 50% 0%;
+  }
+  50% {
+  background-position: 100% 50%;
+  }
+  75% {
+  background-position: 50% 100%;
+  }
+  100% {
+  background-position: 0% 50%;
+  }
+}
+
+body.suspenso {
+  background: linear-gradient(90deg, #0a0a0a, #3b3b3b, #111111);
+  background-size: 300% 300%;
+  animation: suspensoAnimation 4s ease-in-out infinite;
+}
+@keyframes suspensoAnimation {
+  0% {
+  background-position: 0% 50%;
+  }
+  50% {
+  background-position: 100% 50%;
+  }
+  100% {
+  background-position: 0% 50%;
+}
+}
+
+body.mundo-salvado {
+  animation: salvacion 3s infinite alternate;
 }
 
 h1 {
-  color: #333;
-}
-#result .green {
-  color: #2ecc71;
+  color: white;
+  font-size: 75px;
 }
 
-#result .red {
-  color: #e74c3c;
+p{
+  font-size: 45px;
+}
+.countdown{
+  font-size: 40px;
+}
+
+.result{
+  font-size: 40px;
+  text-align: center;
+}
+
+.hermanoRes{
+  font-size: 35px;
+}
+
+#userInput{
+  color: white;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 20px;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 0.5px white solid;
+  width: 50px;
+  height: 30px;
+}
+
+#restart{
+  color: white;
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 0.5px white solid;
+  width: 12rem;
+  height: 3rem;
 }
