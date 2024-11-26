@@ -41,7 +41,7 @@ function cargarJugada (evento) {
             mostrarContador.innerHTML = `<p>💣 ¡Cuidado! La bomba puede estallar, Tiempo restante: ${contador} 💣</p>`;
     
             if (contador <= 0) {
-                clearInterval(intervalo); // Detén el intervalo cuando llegue a 0
+                clearInterval(intervalo); // Freno el intervalo cuando llegue a 0
                 mostrarContador.innerHTML = ""; // dejo vacio el string para la proxima vuelta
                 compararJugadas(); // Llamo la función de comparación que esta abajo
             }

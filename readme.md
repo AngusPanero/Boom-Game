@@ -26,6 +26,6 @@ Debe quedar algo similar a esto
 
 ## Pistas
 - Puedes usar `setTimeout()` para generar la asincronía de 5 segundos
-- Puedes usar `setInterval()` para generar el contador de 5 segundos (recuerda que es del 5 al 0, por tanto el intervalo debería ser uno más) 5, 4, 3, 2, 1, 0 ...
+- Puedes usar `setInterval()` para generar el contador de 5 segundos (recuerda que es del 5 al 0, por tanto el intervalo debería ser uno más) 5, 4, 3, 2, 1, 0 ..
 - Usa promesas para una vez pasado ese tiempo devuelva el resultado y puedas trabajar con él
 - Crea un botón de reinicio del juego voviendo a iniciar la función inicial o reiniciando la página al pulsarlo.

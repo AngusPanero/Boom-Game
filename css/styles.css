@@ -34,9 +34,9 @@ body.estallo {
 body.aSalvo {
   background: linear-gradient(90deg, #007f5f, #00b4d8, #caf0f8);
   background-size: 400% 400%;
-  animation: salvacionAnimation 6s ease infinite;
+  animation: aSalvoAnimation 6s ease infinite;
 }
-@keyframes salvacionAnimation {
+@keyframes aSalvoAnimation {
   0% {
   background-position: 0% 50%;
   }
@@ -69,10 +69,6 @@ body.suspenso {
   100% {
   background-position: 0% 50%;
 }
-}
-
-body.mundo-salvado {
-  animation: salvacion 3s infinite alternate;
 }
 
 h1 {
