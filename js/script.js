@@ -84,6 +84,8 @@ function actualizarPuntos () {
 }
 
 reseteo.addEventListener("click", () => {
+    document.body.classList.remove("aSalvo", "estallo");
+    document.body.classList.add("suspenso");
     puntosUsuario = 0;
     puntosPc = 0;
     localStorage.setItem("puntosUs", puntosUsuario);
